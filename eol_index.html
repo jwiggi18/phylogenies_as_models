@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link href="phylotree.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="phylotree.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
+  <style>
+#code {
+  display: inline-block;
+  width: 700px;
+  padding-left: 50px;
+}
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <h4>Enter an EOL page URL</h4> <br />
+    Note that something like https://eol.org/pages/2322 has a subset of taxa; https://eol.org/pages/2322/names has more taxa listed. Also, Archaea seem to be always "detected" using TNRS, but they probably don't belong on this tree (for most EOL pages).
+
+    <br />
+    <br />
+
+    <input type="text" id="myText" value="https://eol.org/pages/7676/names/" size="200">
+ <br />
+ <br />
+
+    <button onclick="getTaxa()">Build tree of taxa on page</button>
+
+    <br />
+    <h4>Or, enter a scientific name of a clade</h4> <br />
+
+    <input type="text" id="taxonomicgroup" value="Canidae" size="200">
+
+
+    <button onclick="getSubTaxaFromTitle()">Build tree of descendants of page title</button>
+    <br />
+    <br />
+
+    Detected taxa on the page:
+    <p id="demo"></p>
+
+    <br />
+
+    Descendant taxa of the subject of the page:
+    <p id="descendant_demo"></p>
+
+    <br />
+
+
+    <p id="loading"></p>
+
+  </div>
+
+
+  <script>
+  function getTree(taxa, where) {
+    document.getElementById("loading").innerHTML = "Now fetching tree";
+    var xmlhttpTree = new XMLHttpRequest();
+    xmlhttpTree.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("loading").innerHTML = "";
+
+        var myObj = JSON.parse(this.responseText);
+        //document.getElementById("newick").innerHTML = myObj.newick;
+        var tree = d3.layout.phylotree()
+          // create a tree layout object
+          .svg(d3.select(where));
+        // render to this SVG element
+
+        tree(myObj.newick)
+          // parse the Newick into a d3 hierarchy object with additional fields
+          .layout();
+        // layout and render the tree
+
+        // for syntax highlighting
+        hljs.initHighlightingOnLoad();
+      }
+    };
+    xmlhttpTree.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/get_tree?taxa=" + taxa, true);
+    xmlhttpTree.send();
+  }
+  </script>
+
+
+  <script>
+  function getTaxa() {
+    var xmlhttp = new XMLHttpRequest();
+    var taxa = "";
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.scientificNames;
+        taxa = encodeURI(myObj.scientificNames);
+        taxa = taxa.replace(/,/g,"|" );
+        getTree(taxa, "#tree_display");
+      }
+    };
+    xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/fn/names_url?url=" + document.getElementById("myText").value + "&engine=1", true);
+    xmlhttp.send();
+
+
+
+  }
+  </script>
+
+
+  <script>
+  function getSubTaxaFromTitle() {
+    var xmlhttpSubtaxa = new XMLHttpRequest();
+    var descendant_taxa = "";
+    xmlhttpSubtaxa.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        document.getElementById("descendant_demo").innerHTML = myObj.species;
+
+        descendant_taxa = encodeURI(myObj.species);
+        descendant_taxa = descendant_taxa.replace(/,/g,"|" );
+        getTree(descendant_taxa, "#descendant_tree_display");
+      }
+    };
+    xmlhttpSubtaxa.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/ot/all_species?taxon=" + document.getElementById("taxonomicgroup").value, true);
+    xmlhttpSubtaxa.send();
+
+  }
+  </script>
+
+ <h4>Tree of taxa on this page</h4>
+ <br />
+
+  <svg id="tree_display" />
+
+<br />
+
+<h4>Tree of descendant taxa of the title of this page</h4>
+
+<br />
+<svg id="descendant_tree_display" />
+<br />
+
+
+
+</body>
+
+</html>
