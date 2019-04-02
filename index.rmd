@@ -1,0 +1,26 @@
+---
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: journal
+    highlight: sunburst
+    theme.chooser: FALSE
+    highlight.chooser: FALSE
+    menu: FALSE
+runtime: shiny_prerendered
+---
+
+
+```{r echo=FALSE}
+shiny::fluidRow(
+    column(4,
+        selectInput("group", "Choose a group:",
+            choices = c("Mammals", "Amphibians", "Echinoderms", "Mollusks"),
+            multiple = FALSE)
+        )
+    )
+
+      #row to display output
+    shiny::fluidRow(plotOutput("tree"))
+
+```
+
