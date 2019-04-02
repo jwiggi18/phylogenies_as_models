@@ -22,6 +22,8 @@
   width: 700px;
   padding-left: 50px;
 }
+
+
   </style>
 </head>
 
@@ -31,7 +33,7 @@
     <h4>Select a group of organisms</h4> <br />
 
     <br />
-    <select id="group" onchange="getTree()">
+    <select id="group" onchange="getPopular()">
       <option value="mammalia">Mammals</option>
       <option value="amphibia">Amphibians</option>
       <option value="echinodermata">Echinoderms</option>
@@ -48,8 +50,15 @@
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var myObj = JSON.parse(this.responseText);
-          document.getElementById("demo").innerHTML = myObj.scientificNames;
-          taxa = encodeURI(myObj.scientificNames);
+          for (i in myObj.result){
+            for (j in myObj.result[i].popular_species){
+              for (k in myObj.popular_species[j].name){
+                species_name = myObj.name[k];
+              }
+            }
+          }
+          document.getElementById("tree").innerHTML = speicies_name;
+          taxa = encodeURI(myObj.name);
           taxa = taxa.replace(/,/g,"|" );
           getTree(taxa, "#tree_display");
         }
@@ -85,7 +94,8 @@
     }
     </script>
 
-
+    <h4>Taxon Tree</h4>
+    <svg id= "tree_display" />
 
 </body>
 
