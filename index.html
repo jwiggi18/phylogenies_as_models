@@ -58,8 +58,8 @@
             }
           }
           document.getElementById("tree").innerHTML = speicies_name;
-          taxa = encodeURI(myObj.name);
-          taxa = taxa.replace(/,/g,"|" );
+          taxa = encodeURI(species_name);
+          //taxa = taxa.replace(/,/g,"|" );
           getTree(taxa, "#tree_display");
         }
       };
