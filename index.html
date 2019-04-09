@@ -57,8 +57,8 @@
               popular_species.push((res[i]).name);
           }
           document.getElementById("tree").innerHTML = species_name;
-          taxa = encodeURI(species_name);
-          //taxa = taxa.replace(/,/g,"|" );
+          var taxa = encodeURI(popular_species);
+          taxa = taxa.replace(/,/g,"|" );
           getTree(taxa, "#tree_display");
         }
       }
