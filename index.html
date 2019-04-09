@@ -50,10 +50,18 @@
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var myObj = JSON.parse(this.responseText);
-          for (i in myObj.result){
-            for (j in myObj.result[i].popular_species){
-              for (k in myObj.popular_species[j].name){
-                species_name = myObj.name[k];
+          console.log(myObj)
+          let res = myObj.result
+          for (let i=0, len=res.length; i<len; i++){
+            let pop = len[p].popular_species
+            for (let p=0, len=pop.length; p<len; p++){
+              let name = pop[p].name
+              for (let n=0, len=name.length; n<len; n++)
+              species_name = name[n]
+            }
+            //for (j in res[i].popular_species){
+              //for (k in res[i].popular_species[j].name){
+                //species_name = myObj.name[k];
               }
             }
           }
