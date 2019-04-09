@@ -56,13 +56,13 @@
             let pop = len[p].popular_species
             for (let p=0, len=pop.length; p<len; p++){
               let name = pop[p].name
-              for (let n=0, len=name.length; n<len; n++)
-              species_name = name[n]
-            }
+              for (let n=0, len=name.length; n<len; n++) {
+                species_name = name[n]
+              }
             //for (j in res[i].popular_species){
               //for (k in res[i].popular_species[j].name){
                 //species_name = myObj.name[k];
-              }
+            //  }
             }
           }
           document.getElementById("tree").innerHTML = species_name;
@@ -70,7 +70,7 @@
           //taxa = taxa.replace(/,/g,"|" );
           getTree(taxa, "#tree_display");
         }
-      //};
+      }
       xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/oz/popular_species?taxon=" + document.getElementById("group").value + "&num_species=10", true);
       xmlhttp.send();
     }
