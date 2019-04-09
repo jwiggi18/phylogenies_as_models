@@ -56,7 +56,7 @@
           for (i=0; i<res.length; i++){
               popular_species.push((res[i]).name);
           }
-          document.getElementById("tree").innerHTML = species_name;
+        //  document.getElementById("tree").innerHTML = species_name;
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
           getTree(taxa, "#tree_display");
