@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -73,19 +72,16 @@
     xmlhttpTree.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("loading").innerHTML = "";
-
         var myObj = JSON.parse(this.responseText);
         //document.getElementById("newick").innerHTML = myObj.newick;
         var tree = d3.layout.phylotree()
           // create a tree layout object
           .svg(d3.select(where));
         // render to this SVG element
-
         tree(myObj.newick)
           // parse the Newick into a d3 hierarchy object with additional fields
           .layout();
         // layout and render the tree
-
         // for syntax highlighting
         hljs.initHighlightingOnLoad();
       }
@@ -111,9 +107,6 @@
     };
     xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/fn/names_url?url=" + document.getElementById("myText").value + "&engine=1", true);
     xmlhttp.send();
-
-
-
   }
   </script>
 
@@ -126,7 +119,6 @@
       if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         document.getElementById("descendant_demo").innerHTML = myObj.species;
-
         descendant_taxa = encodeURI(myObj.species);
         descendant_taxa = descendant_taxa.replace(/,/g,"|" );
         getTree(descendant_taxa, "#descendant_tree_display");
@@ -134,7 +126,6 @@
     };
     xmlhttpSubtaxa.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/ot/all_species?taxon=" + document.getElementById("taxonomicgroup").value, true);
     xmlhttpSubtaxa.send();
-
   }
   </script>
 
