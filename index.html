@@ -41,9 +41,9 @@
       <option value="echinodermata">Echinoderms</option>
       <option value="mollusca">Mollusks</option>
       <option value="insecta">Insects</option>
-      <option value="arachnia">Arachnids</option>
+      <option value="arachnida">Arachnids</option>
       <option value="bryopsida">Mosses</option>
-      <option value="magnoliophyta">Flowering plants</option>      
+      <option value="magnoliophyta">Flowering plants</option>
     </select>
 
     <p id="loading"></p>
@@ -70,6 +70,18 @@
       }
       xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/oz/popular_species?taxon=" + document.getElementById("group").value + "&num_species=20", true);
       xmlhttp.send();
+    }
+    </script>
+
+// getOZPopular pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
+    <script>
+    function getOZPopular() {
+      var xmlhttpOZ = new XMLHttpRequest();
+      var taxa = "";
+      xmlhttpOZ.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var myObj = JSON.parse(this.responseText);
+          var data = (myObj.data)//incomplete
     }
     </script>
 
