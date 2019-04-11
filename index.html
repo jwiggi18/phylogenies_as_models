@@ -31,7 +31,7 @@
     <h4>Select a group of organisms</h4>
 
     <br />
-<!--  <select id="group" onchange="getPopular()">
+    <select id="group" onchange="getPopular()">
       <option value="select">Select</option>
       <option value="mammalia">Mammals</option>
       <option value="amphibia">Amphibians</option>
@@ -41,10 +41,11 @@
       <option value="insecta">Insects</option>
       <option value="bryopsida">Mosses</option>
       <option value="magnoliophyta">Flowering plants</option>
-    </select> -->
+    </select>
 
 <!-- <option value="arachnida">Arachnids</option> -->
 
+<!--
 <select id="group" onchange="getOZPopular()">
       <option value="select">Select</option>
       <option value="244265">Mammals</option>
@@ -56,6 +57,7 @@
       <option value="821346">Mosses</option>
       <option value="99252">Flowering plants</option>
     </select>
+     -->
 
     <p id="loading"></p>
     <p id="tree"></p>
@@ -86,7 +88,7 @@
 
 
     <script>
-    // getOZPopular pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
+    // getOZPopular - cannot be used yet https/htts conflict - pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
     function getOZPopular() {
       var xmlhttpOZ = new XMLHttpRequest();
       var taxa = "";
