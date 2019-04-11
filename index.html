@@ -22,15 +22,13 @@
   width: 700px;
   padding-left: 50px;
 }
-
-
   </style>
 </head>
 
 <body>
 
   <div>
-    <h4>Select a group of organisms</h4> <br />
+    <h4>Select a group of organisms</h4>
 
     <br />
     <select id="group" onchange="getPopular()">
@@ -41,10 +39,11 @@
       <option value="echinodermata">Echinoderms</option>
       <option value="mollusca">Mollusks</option>
       <option value="insecta">Insects</option>
-      <option value="arachnida">Arachnids</option>
       <option value="bryopsida">Mosses</option>
       <option value="magnoliophyta">Flowering plants</option>
     </select>
+
+    // <option value="arachnida">Arachnids</option>
 
     <p id="loading"></p>
     <p id="tree"></p>
@@ -73,8 +72,9 @@
     }
     </script>
 
-// getOZPopular pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
+
     <script>
+    // getOZPopular pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
     function getOZPopular() {
       var xmlhttpOZ = new XMLHttpRequest();
       var taxa = "";
