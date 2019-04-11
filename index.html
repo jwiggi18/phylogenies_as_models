@@ -134,7 +134,7 @@
           hljs.initHighlightingOnLoad();
         }
       };
-      xmlhttpTree.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/get_tree?taxa=" + taxa, + '&ottid=false', true);
+      xmlhttpTree.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/get_tree?ottid=false&taxa=" + taxa, true);
       xmlhttpTree.send();
     }
     </script>
