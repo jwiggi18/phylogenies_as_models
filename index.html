@@ -81,8 +81,22 @@
       xmlhttpOZ.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var myObj = JSON.parse(this.responseText);
-          var data = (myObj.data)//incomplete
+          var data = (myObj.data[0])
+          var i = 0
+          var popular_species = [];
+          for (i=0, 9<data.length; i++){
+            popular_species.push((data[i][3]))
+          }
+          var taxa = encodeURI(popular_species);
+          taxa = taxa.replace(/,/g,"|" );
+          getTree(taxa, "#tree_display");
+        }
+      }
+      //group value must be ottids not names to use this fn
+      xmlhttp.open("GET", "http://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&otts=" + document.getElementById("group").value, true);
+      xmlhttp.send();
     }
+
     </script>
 
     <script>
