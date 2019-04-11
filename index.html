@@ -31,7 +31,7 @@
     <h4>Select a group of organisms</h4>
 
     <br />
-    <select id="group" onchange="getPopular()">
+<!--  <select id="group" onchange="getPopular()">
       <option value="select">Select</option>
       <option value="mammalia">Mammals</option>
       <option value="amphibia">Amphibians</option>
@@ -41,9 +41,21 @@
       <option value="insecta">Insects</option>
       <option value="bryopsida">Mosses</option>
       <option value="magnoliophyta">Flowering plants</option>
-    </select>
+    </select> -->
 
-    // <option value="arachnida">Arachnids</option>
+<!-- <option value="arachnida">Arachnids</option> -->
+
+<select id="group" onchange="getOZPopular()">
+      <option value="select">Select</option>
+      <option value="244265">Mammals</option>
+      <option value="544595">Amphibians</option>
+      <option value="329823">Modern reptiles</option>
+      <option value="451020">Echinoderms</option>
+      <option value="802117">Mollusks</option>
+      <option value="1062253">Insects</option>
+      <option value="821346">Mosses</option>
+      <option value="99252">Flowering plants</option>
+    </select>
 
     <p id="loading"></p>
     <p id="tree"></p>
