@@ -96,8 +96,8 @@
           var data = (myObj.data[0])
           var i = 0
           var popular_species = [];
-          for (i=0, i<data.length; i++){
-            popular_species.push((data[i][3]))
+          for (i=0; i<data.length; i++){
+            popular_species.push((data[i])[3]);
           }
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
