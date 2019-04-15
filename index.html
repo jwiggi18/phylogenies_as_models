@@ -107,7 +107,7 @@
         }
       }
       //group value must be ottids not names to use this fn
-      xmlhttpOZ.open("GET", "http://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&otts=" + document.getElementById("group").value, true);
+      xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&otts=" + document.getElementById("group").value, true);
       xmlhttpOZ.send();
     }
 
