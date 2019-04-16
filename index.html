@@ -103,6 +103,7 @@
           }
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
+          console.log(taxa)
           getTree(taxa, "#tree_display");
         }
       }
