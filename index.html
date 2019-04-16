@@ -96,7 +96,7 @@
         if (this.readyState == 4 && this.status == 200) {
           var myObj = JSON.parse(this.responseText);
           console.log(myObj);
-          var data = (myObj.data[0])
+          var data = (myObj.data)
           console.log(data);
           var i = 0
           var popular_species = [];
