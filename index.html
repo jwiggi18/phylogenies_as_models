@@ -95,23 +95,19 @@
       xmlhttpOZ.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           var myObj = JSON.parse(this.responseText);
-          console.log(myObj);
           var data = (myObj.data)
-          console.log(data);
           var i = 0
           var popular_species = [];
           for (i=0; i<data.length; i++){
             popular_species.push((data[i])[3]);
           }
-          console.log(popular_species);
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
-          console.log(taxa);
           getTree(taxa, "#tree_display");
         }
       }
       //group value must be ottids not names to use this fn
-      xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&otts=" + document.getElementById("group").value, true);
+      xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&sort=rank&otts=" + document.getElementById("group").value, true);
       xmlhttpOZ.send();
     }
 
