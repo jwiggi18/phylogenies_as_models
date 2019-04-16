@@ -50,8 +50,9 @@
       <option value="select">Select</option>
       <option value="244265">Mammals</option>
       <option value="544595">Amphibians</option>
-      <option value="639642">Modern reptiles</option>
+      <option value="35888">Squamates</option>
       <option value="451020">Echinoderms</option>
+      <option value="81461">Birds</option>
       <option value="802117">Mollusks</option>
       <option value="1062253">Insects</option>
       <option value="821346">Mosses</option>
@@ -103,7 +104,6 @@
           }
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
-          console.log(taxa)
           getTree(taxa, "#tree_display");
         }
       }
@@ -141,7 +141,7 @@
     </script>
 
     <script>
-    //use with taxa output from getPopular
+    //use with taxa output from getPopular or getOZPopular
     function getCommon(taxa){
     var xmlhttpCommon = new XMLHttpRequest();
     xmlhttpCommon.onreadystatechange = function() {
