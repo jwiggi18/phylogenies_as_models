@@ -29,7 +29,7 @@
 
   <div>
     <h4>Select a group of organisms</h4>
-
+<!--
     <br />
     <select id="group" onchange="getPopular()">
       <option value="select">Select</option>
@@ -42,10 +42,10 @@
       <option value="bryopsida">Mosses</option>
       <option value="magnoliophyta">Flowering plants</option>
     </select>
-
+     -->
 <!-- <option value="arachnida">Arachnids</option> -->
 
-<!--
+
 <select id="group" onchange="getOZPopular()">
       <option value="select">Select</option>
       <option value="244265">Mammals</option>
@@ -57,7 +57,7 @@
       <option value="821346">Mosses</option>
       <option value="99252">Flowering plants</option>
     </select>
-     -->
+
 
     <p id="loading"></p>
     <p id="tree"></p>
@@ -143,7 +143,7 @@
     //use with taxa output from getPopular
     function getCommon(taxa){
     var xmlhttpCommon = new XMLHttpRequest();
-    xmlhttpTree.onreadystatechange = function() {
+    xmlhttpCommon.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("loading").innerHTML = "";
         var myObj = JSON.parse(this.responseText);
