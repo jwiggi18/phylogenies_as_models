@@ -130,6 +130,7 @@
           tree(myObj.newick)
             // parse the Newick into a d3 hierarchy object with additional fields
             .layout();
+          tree.size([200,400]);
           // layout and render the tree
           // for syntax highlighting
           hljs.initHighlightingOnLoad();
