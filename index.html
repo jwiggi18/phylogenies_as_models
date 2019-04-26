@@ -145,8 +145,8 @@
     // Function to call a newick string with common names rather than scientific
     function getCommonTree(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
-      var xmlhttpTree = new XMLHttpRequest();
-      xmlhttpTree.onreadystatechange = function() {
+      var xmlhttpCommonTree = new XMLHttpRequest();
+      xmlhttpCommonTree.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           document.getElementById("loading").innerHTML = "";
           var myObj = JSON.parse(this.responseText);
@@ -164,8 +164,9 @@
           hljs.initHighlightingOnLoad();
         }
       };
-      xmlhttpTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree" -H "content-type:application/json" -d '{"list":[' + taxa + '],"list_type":"scientific"}', true);
-      xmlhttpTree.send();
+      xmlhttpCommonTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree", true);
+      xmlhttpCommonTree.setRequestHeader("content-type", "application/json")
+      xmlhttpCommonTree.send({'"{"list"}:["' + taxa + '"], "list_type":"scientific"}'});
     }
     </script>
 
