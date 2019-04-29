@@ -10,6 +10,8 @@
   <link href="phylotree.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script src="//code.jquery.com/jquery.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -145,7 +147,11 @@
     // Function to call a newick string with common names rather than scientific
     function getCommonTree(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
-      var xmlhttpCommonTree = new XMLHttpRequest();
+      $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
+      {
+        list: taxa
+        list_type: "scientific"
+      });
       xmlhttpCommonTree.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           document.getElementById("loading").innerHTML = "";
@@ -164,9 +170,6 @@
           hljs.initHighlightingOnLoad();
         }
       };
-      xmlhttpCommonTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree", true);
-      xmlhttpCommonTree.setRequestHeader("content-type", "application/json")
-      xmlhttpCommonTree.send({'"{"list"}:["' + taxa + '"], "list_type":"scientific"}'});
     }
     </script>
 
