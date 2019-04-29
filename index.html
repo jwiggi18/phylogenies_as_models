@@ -147,12 +147,12 @@
     // Function to call a newick string with common names rather than scientific
     function getCommonTree(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
-      $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
+      var commonTree = $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
       {
         list: taxa
         list_type: "scientific"
       });
-      xmlhttpCommonTree.onreadystatechange = function() {
+      commonTree.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           document.getElementById("loading").innerHTML = "";
           var myObj = JSON.parse(this.responseText);
