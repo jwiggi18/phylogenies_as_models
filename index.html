@@ -148,12 +148,9 @@
     function getCommonTree(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
       var commonTree = $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
-      {
-        list: taxa
-        list_type: "scientific"
-      });
+      {list: taxa, list_type: "scientific"},
       commonTree.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        alert("success")
           document.getElementById("loading").innerHTML = "";
           var myObj = JSON.parse(this.responseText);
           //document.getElementById("newick").innerHTML = myObj.newick;
