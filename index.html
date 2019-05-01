@@ -147,6 +147,37 @@
     // Function to call a newick string with common names rather than scientific
     function getCommonTree(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
+      var commonTree = new XMLHttpRequest();
+      commonTree.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("loading").innerHTML = "";
+          var myObj = JSON.parse(this.responseText);
+          //document.getElementById("newick").innerHTML = myObj.newick;
+          var tree = d3.layout.phylotree()
+            // create a tree layout object
+            .svg(d3.select(where));
+          // render to this SVG element
+          tree(myObj.newick)
+            // parse the Newick into a d3 hierarchy object with additional fields
+            .layout();
+          tree.size([200,400]);
+          // layout and render the tree
+          // for syntax highlighting
+          hljs.initHighlightingOnLoad();
+        }
+      };
+
+      commonTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree" , true);
+      commonTree.setRequestHeader("Content-Type", "content-type:application/json");
+      commonTree.send(taxa);
+    }
+    </script>
+
+
+    <script>
+    // Function to call a newick string with common names rather than scientific
+    function getCommonTreeOld(taxa, where) {
+      document.getElementById("loading").innerHTML = "Now fetching tree";
       var commonTree = $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
       {list: taxa, list_type: "scientific"},
       commonTree.onreadystatechange = function() {
@@ -166,8 +197,10 @@
           // for syntax highlighting
           hljs.initHighlightingOnLoad();
         }
-      )}
+      );
+    }
     </script>
+
 
     <h4>Taxon Tree</h4>
     <svg id= "tree_display"
