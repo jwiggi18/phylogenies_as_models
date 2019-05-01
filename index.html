@@ -143,6 +143,8 @@
     }
     </script>
 
+
+
     <script>
     // Function to call a newick string with common names rather than scientific
     function getCommonTree(taxa, where) {
@@ -166,10 +168,11 @@
           hljs.initHighlightingOnLoad();
         }
       };
-
-      commonTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree" , true);
+// Using example from https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
+// Which uses https://cors-anywhere.herokuapp.com to get around the cross domain issue
+      commonTree.open("POST", "https://cors-anywhere.herokuapp.com/?https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree&taxa=" + taxa + "&list_type=scientific", true);
       commonTree.setRequestHeader("Content-Type", "content-type:application/json");
-      commonTree.send(taxa);
+      commonTree.send();
     }
     </script>
 
