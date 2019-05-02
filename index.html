@@ -107,6 +107,9 @@
           var taxa = encodeURI(popular_species);
           taxa = taxa.replace(/,/g,"|" );
           getCommonTree(taxa, "#tree_display");
+        //  getTree(taxa, "#tree_display");
+        //invoke_service(taxa, "#tree_display");
+
         }
       }
       //group value must be ottids not names to use this fn
@@ -143,11 +146,44 @@
     }
     </script>
 
+    <script>
+    // Modifying script sent by Abu Saleh Md Tayeen
+    function getCommonTree(taxa, where){
+      document.getElementById("loading").innerHTML = "Now fetching tree";
+      taxa = taxa.replace(/%20/g," ");
+      taxa = taxa.split("|");
+    //  alert(taxa);
 
+    //  var lst = ["Panthera pardus", "Taxidea taxus","Lutra lutra","Canis lupus","Mustela altaica"];
+      var xhr = new XMLHttpRequest(); xhr.open('POST', 'https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var resp = JSON.parse(xhr.responseText);
+          //alert(resp.newick);
+          document.getElementById("loading").innerHTML = "";
+        //  var myObj = JSON.parse(this.responseText);
+          //document.getElementById("newick").innerHTML = myObj.newick;
+          var tree = d3.layout.phylotree()
+            // create a tree layout object
+            .svg(d3.select(where));
+          // render to this SVG element
+          tree(resp.newick)
+            // parse the Newick into a d3 hierarchy object with additional fields
+            .layout();
+          tree.size([200,400]);
+          // layout and render the tree
+          // for syntax highlighting
+          hljs.initHighlightingOnLoad();
+        }
+      };
+      xhr.send(JSON.stringify({ "list": taxa, "list_type": 'scientific' }));
+    }
+    </script>
 
     <script>
     // Function to call a newick string with common names rather than scientific
-    function getCommonTree(taxa, where) {
+    function getCommonTreeLessOld(taxa, where) {
       document.getElementById("loading").innerHTML = "Now fetching tree";
       var commonTree = new XMLHttpRequest();
       commonTree.onreadystatechange = function() {
@@ -171,9 +207,15 @@
       };
 // Using example from https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
 // Which uses https://cors-anywhere.herokuapp.com to get around the cross domain issue
-      commonTree.open("POST", "https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree&taxa=" + taxa + "&list_type=scientific", true);
-      commonTree.setRequestHeader("Content-Type", "content-type:application/json");
-      commonTree.send();
+      commonTree.open("POST", 'https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree', true);
+      commonTree.setRequestHeader('Content-Type', 'application/json');
+      commonTree.onload = function() {
+        if (commonTree.status === 200) {
+          var resp = JSON.parse(commonTree.responseText);
+          alert(resp.newick);
+        }
+      };
+      commonTree.send(JSON.stringify({ "list": taxa, "list_type": 'scientific' }));
     }
     </script>
 
