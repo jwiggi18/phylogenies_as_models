@@ -166,12 +166,21 @@
           //document.getElementById("newick").innerHTML = myObj.newick;
           var tree = d3.layout.phylotree()
             // create a tree layout object
-            .svg(d3.select(where));
+            .svg(d3.select(where))
+            .options({
+              'left-right-spacing': 'fit-to-size',
+              'top-bottom-spacing': 'fit-to-size'
+            })
+            .size([500, 800]);
+
           // render to this SVG element
+
+
           tree(resp.newick)
             // parse the Newick into a d3 hierarchy object with additional fields
             .layout();
-          tree.size([200,400]);
+
+
           // layout and render the tree
           // for syntax highlighting
           hljs.initHighlightingOnLoad();
