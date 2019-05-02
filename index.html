@@ -175,8 +175,9 @@
 
           // render to this SVG element
 
+          var newick = resp.newick;
 
-          tree(resp.newick)
+          tree(newick.replace(/ /g,"_"))
             // parse the Newick into a d3 hierarchy object with additional fields
             .layout();
 
