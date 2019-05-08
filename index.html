@@ -5,10 +5,13 @@
 <head>
   <meta charset="utf-8">
 
+  <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <link href="phylotree.css" rel="stylesheet">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -18,18 +21,18 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="phylotree.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
-  <style>
-#code {
-  display: inline-block;
-  width: 700px;
-  padding-left: 50px;
-}
-  </style>
+
+
+
 </head>
 
 <body>
+  <header>
+  <img src = "img/Logo_minimal.png" alt = "Circular Phylogeny overlaying a Brown and Green tree"/>
+  <h1>Phylogenies as Models</h1>
+  </header>
 
-  <div>
+  <div class="margin-top row-padding">
     <h4>Select a group of organisms</h4>
 <!--
     <br />
@@ -261,10 +264,9 @@
     <h4>Taxon Tree</h4>
     <svg id= "tree_display" ></svg>
 
-
+    <div class="center">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
+    </div>
 
 </body>
 

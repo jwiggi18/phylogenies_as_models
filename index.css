@@ -1,0 +1,29 @@
+header {
+  display: block;
+}
+
+img {
+  float: left;
+  background-color: white;
+  width: 200px;
+  height: 200px;
+}
+
+body {
+  border: 50px solid white;
+}
+
+.row-padding {
+  content:"";
+  display:table;
+  clear:both}
+
+.margin-top{
+  margin-top:16px!important
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
