@@ -11,6 +11,8 @@
   <link href="phylotree.css" rel="stylesheet">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,19 +23,25 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="phylotree.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
-
+  <script src="index.js"></script>
 
 
 </head>
 
 <body>
   <header>
-  <img src = "img/Logo_minimal.png" alt = "Circular Phylogeny overlaying a Brown and Green tree"/>
-  <h1>Phylogenies as Models</h1>
+  <img src = "img/logo_w_text.png" alt = "Circular Phylogeny overlaying a Brown and Green tree"/>
   </header>
 
-  <div class="margin-top row-padding">
-    <h4>Select a group of organisms</h4>
+<hr>
+
+<!-- Grid -->
+<div class="w3-row">
+    <!-- To select -->
+    <div class="w3-third">
+      <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container">
+          <h4>Select a group of organisms</h4>
 <!--
     <br />
     <select id="group" onchange="getPopular()">
@@ -68,205 +76,49 @@
     <p id="loading"></p>
     <p id="tree"></p>
 
-    <script>
-    function getPopular() {
-      var xmlhttp = new XMLHttpRequest();
-      var taxa = "";
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var myObj = JSON.parse(this.responseText);
-          var res = (myObj.result[0]).popular_species;
-          var i = 0;
-          var popular_species = [];
-          for (i=0; i<res.length; i++){
-              popular_species.push((res[i]).name);
-          }
-        //  document.getElementById("tree").innerHTML = species_name;
-          var taxa = encodeURI(popular_species);
-          taxa = taxa.replace(/,/g,"|" );
-          getTree(taxa, "#tree_display");
-        }
-      }
-      xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/oz/popular_species?taxon=" + document.getElementById("group").value + "&num_species=20", true);
-      xmlhttp.send();
-    }
-    </script>
-
-
-    <script>
-    // getOZPopular - pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
-    function getOZPopular() {
-      var xmlhttpOZ = new XMLHttpRequest();
-      var taxa = "";
-      xmlhttpOZ.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var myObj = JSON.parse(this.responseText);
-          var data = (myObj.data)
-          var i = 0
-          var popular_species = [];
-          for (i=0; i<data.length; i++){
-            popular_species.push((data[i])[3]);
-          }
-          var taxa = encodeURI(popular_species);
-          taxa = taxa.replace(/,/g,"|" );
-          getCommonTree(taxa, "#tree_display");
-        //  getTree(taxa, "#tree_display");
-        //invoke_service(taxa, "#tree_display");
-
-        }
-      }
-      //group value must be ottids not names to use this fn
-      xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&sort=rank&otts=" + document.getElementById("group").value, true);
-      xmlhttpOZ.send();
-    }
-
-    </script>
-
-    <script>
-    function getTree(taxa, where) {
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      var xmlhttpTree = new XMLHttpRequest();
-      xmlhttpTree.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("loading").innerHTML = "";
-          var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where));
-          // render to this SVG element
-          tree(myObj.newick)
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-          tree.size([200,400]);
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      };
-      xmlhttpTree.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/get_tree?ottid=false&taxa=" + taxa, true);
-      xmlhttpTree.send();
-    }
-    </script>
-
-    <script>
-    // Modifying script sent by Abu Saleh Md Tayeen
-    function getCommonTree(taxa, where){
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      taxa = taxa.replace(/%20/g," ");
-      taxa = taxa.split("|");
-    //  alert(taxa);
-
-    //  var lst = ["Panthera pardus", "Taxidea taxus","Lutra lutra","Canis lupus","Mustela altaica"];
-      var xhr = new XMLHttpRequest(); xhr.open('POST', 'https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          var resp = JSON.parse(xhr.responseText);
-          //alert(resp.newick);
-          document.getElementById("loading").innerHTML = "";
-        //  var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where))
-            .options({
-              'left-right-spacing': 'fit-to-size',
-              'top-bottom-spacing': 'fit-to-size'
-            })
-            .size([500, 800]);
-
-          // render to this SVG element
-
-          var newick = resp.newick;
-
-          tree(newick.replace(/ /g,"_"))
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-
-
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      };
-      xhr.send(JSON.stringify({ "list": taxa, "list_type": 'scientific' }));
-    }
-    </script>
-
-    <script>
-    // Function to call a newick string with common names rather than scientific
-    function getCommonTreeLessOld(taxa, where) {
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      var commonTree = new XMLHttpRequest();
-      commonTree.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("loading").innerHTML = "";
-          console.log(JSON.stringify(this.responseText)) ;
-          var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where));
-          // render to this SVG element
-          tree(myObj.newick)
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-          tree.size([200,400]);
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      };
-// Using example from https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
-// Which uses https://cors-anywhere.herokuapp.com to get around the cross domain issue
-      commonTree.open("POST", 'https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree', true);
-      commonTree.setRequestHeader('Content-Type', 'application/json');
-      commonTree.onload = function() {
-        if (commonTree.status === 200) {
-          var resp = JSON.parse(commonTree.responseText);
-          alert(resp.newick);
-        }
-      };
-      commonTree.send(JSON.stringify({ "list": taxa, "list_type": 'scientific' }));
-    }
-    </script>
-
-
-    <script>
-    // Function to call a newick string with common names rather than scientific
-    function getCommonTreeOld(taxa, where) {
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      var commonTree = $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
-      {list: taxa, list_type: "scientific"},
-      commonTree.onreadystatechange = function() {
-        alert("success")
-          document.getElementById("loading").innerHTML = "";
-          var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where));
-          // render to this SVG element
-          tree(myObj.newick)
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-          tree.size([200,400]);
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      );
-    }
-    </script>
-
-
-    <h4>Taxon Tree</h4>
-    <svg id= "tree_display" ></svg>
-
-    <div class="center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
+  </div>
+<!-- End To select -->
+
+<!-- Tree Display -->
+      <div class="w3-col l8 s12">
+        <div class="w3-margin w3-margin-top">
+          <div class="w3-container">
+        <h4>Taxon Tree</h4>
+        <svg id= "tree_display" ></svg>
+          </div>
+        </div>
+      </div>
+<!-- End Tree Display -->
+
+    </div><br>
+<!-- End Grid -->
+
+<!-- 2nd Grid -->
+<div class="w3-row">
+  <!-- Quiz -->
+  <div class="w3-third">
+    <div class="w3-card-4 w3-margin w3-white">
+      <div class="w3-container">
+        <h4>Check your Understanding</h4>
+      </div>
+    </div>
+  </div>
+  <!-- End Quiz -->
+
+  <!-- Phylogeny Video -->
+  <div class="w3-col l8 s12">
+    <div class="w3-card-4 w3-margin-top">
+      <div class="w3-container">
+        <h4>Learn about Phylogenetic Trees</h4>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  <!-- End Phylogeny Video -->
+  </div>
+<!-- End 2nd Grid -->
 
 </body>
 
