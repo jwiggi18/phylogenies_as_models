@@ -25,8 +25,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
   <script src="index.js"></script>
 
-
 </head>
+
 
 <body>
 <div class = "row">
@@ -42,7 +42,7 @@
     <!-- To select -->
     <div class="column1" style="background-color:white;">
       <div class="w3-card-4 w3-margin w3-white">
-        <div class="w3-container">
+
           <h4>Select a group of organisms</h4>
 <!--
     <br />
@@ -78,119 +78,6 @@
     <p id="loading"></p>
     <p id="tree"></p>
 
-<<<<<<< HEAD
-    <script>
-    function getPopular() {
-      var xmlhttp = new XMLHttpRequest();
-      var taxa = "";
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var myObj = JSON.parse(this.responseText);
-          var res = (myObj.result[0]).popular_species;
-          var i = 0;
-          var popular_species = [];
-          for (i=0; i<res.length; i++){
-              popular_species.push((res[i]).name);
-          }
-        //  document.getElementById("tree").innerHTML = species_name;
-          var taxa = encodeURI(popular_species);
-          taxa = taxa.replace(/,/g,"|" );
-          getTree(taxa, "#tree_display");
-        }
-      }
-      xmlhttp.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/oz/popular_species?taxon=" + document.getElementById("group").value + "&num_species=20", true);
-      xmlhttp.send();
-    }
-    </script>
-
-
-    <script>
-    // getOZPopular - pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
-    function getOZPopular() {
-      var xmlhttpOZ = new XMLHttpRequest();
-      var taxa = "";
-      xmlhttpOZ.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var myObj = JSON.parse(this.responseText);
-          var data = (myObj.data)
-          var i = 0
-          var popular_species = [];
-          for (i=0; i<data.length; i++){
-            popular_species.push((data[i])[3]);
-          }
-          var taxa = encodeURI(popular_species);
-          taxa = taxa.replace(/,/g,"|" );
-          getCommonTree(taxa, "#tree_display");
-        }
-      }
-      //group value must be ottids not names to use this fn
-      xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=0&max=20&names=1&sort=rank&otts=" + document.getElementById("group").value, true);
-      xmlhttpOZ.send();
-    }
-
-    </script>
-
-    <script>
-    function getTree(taxa, where) {
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      var xmlhttpTree = new XMLHttpRequest();
-      xmlhttpTree.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("loading").innerHTML = "";
-          var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where));
-          // render to this SVG element
-          tree(myObj.newick)
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-          tree.size([200,400]);
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      };
-      xmlhttpTree.open("GET", "https://phylo.cs.nmsu.edu/phylotastic_ws/gt/ot/get_tree?ottid=false&taxa=" + taxa, true);
-      xmlhttpTree.send();
-    }
-    </script>
-
-    <script>
-    // Function to call a newick string with common names rather than scientific
-    function getCommonTree(taxa, where) {
-      document.getElementById("loading").innerHTML = "Now fetching tree";
-      var commonTree = $.post("https://phylo.cs.nmsu.edu/phylotastic_ws/cp/gt/tree",
-      {
-        list: taxa
-        list_type: "scientific"
-      });
-      commonTree.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("loading").innerHTML = "";
-          var myObj = JSON.parse(this.responseText);
-          //document.getElementById("newick").innerHTML = myObj.newick;
-          var tree = d3.layout.phylotree()
-            // create a tree layout object
-            .svg(d3.select(where));
-          // render to this SVG element
-          tree(myObj.newick)
-            // parse the Newick into a d3 hierarchy object with additional fields
-            .layout();
-          tree.size([200,400]);
-          // layout and render the tree
-          // for syntax highlighting
-          hljs.initHighlightingOnLoad();
-        }
-      };
-    }
-    </script>
-
-    <h4>Taxon Tree</h4>
-    <svg id= "tree_display"
-
-=======
       </div>
     </div>
 
@@ -236,7 +123,6 @@
   <!-- End Phylogeny Video -->
   </div>
 <!-- End 2nd Grid -->
->>>>>>> 0819ca1cb19ccf49e26963b39f585c5689148db1
 
 </body>
 
