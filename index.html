@@ -29,16 +29,18 @@
 </head>
 
 <body>
+<div class = "row">
   <header>
   <img src = "img/logo_w_text.png" alt = "Circular Phylogeny overlaying a Brown and Green tree"/>
   </header>
+</div>
 
 <hr>
 
 <!-- Grid -->
-<div class="w3-row">
+<div class="row">
     <!-- To select -->
-    <div class="w3-third">
+    <div class="column1" style="background-color:white;">
       <div class="w3-card-4 w3-margin w3-white">
         <div class="w3-container">
           <h4>Select a group of organisms</h4>
@@ -78,11 +80,20 @@
 
       </div>
     </div>
+
+<!-- Quiz -->
+    <div class="w3-card-4 w3-margin w3-white">
+      <div class="w3-container">
+        <h4>Check your Understanding</h4>
+      </div>
+    </div>
   </div>
+<!-- End Quiz -->
+
 <!-- End To select -->
 
 <!-- Tree Display -->
-      <div class="w3-col l8 s12">
+      <div class="column2" style="background-color:white;">
         <div class="w3-margin w3-margin-top">
           <div class="w3-container">
         <h4>Taxon Tree</h4>
@@ -100,26 +111,15 @@
 <!-- End Grid -->
 
 <!-- 2nd Grid -->
-<div class="w3-row">
-  <!-- Quiz -->
-  <div class="w3-third">
-    <div class="w3-card-4 w3-margin w3-white">
-      <div class="w3-container">
-        <h4>Check your Understanding</h4>
-      </div>
-    </div>
-  </div>
-  <!-- End Quiz -->
+<div class="row">
 
   <!-- Phylogeny Video -->
-  <div class="w3-col l8 s12">
     <div class="w3-card-4 w3-margin-top">
       <div class="w3-container">
         <h4>Learn about Phylogenetic Trees</h4>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class ="center-video" width="800" height="600" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
   <!-- End Phylogeny Video -->
   </div>
 <!-- End 2nd Grid -->

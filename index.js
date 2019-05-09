@@ -99,8 +99,8 @@ function getCommonTree(taxa, where){
           'left-right-spacing': 'fit-to-size',
           'top-bottom-spacing': 'fit-to-size',
         })
-        .size([900, 1000])
-        .font_size([60]);
+        .size([800, 900])
+        .font_size([45]);
 
       var newick = resp.newick;
 
