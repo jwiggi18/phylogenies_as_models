@@ -93,6 +93,7 @@ function getCommonTree(taxa, where){
       var tree = d3.layout.phylotree()
         // create a tree layout object
         .svg(d3.select(where))
+        // render to this SVG element
       //.radial(true)
         .options({
           'left-right-spacing': 'fit-to-size',
@@ -100,8 +101,6 @@ function getCommonTree(taxa, where){
         })
         .size([700, 1000])
         .font_size([60]);
-
-      // render to this SVG element
 
       var newick = resp.newick;
 
