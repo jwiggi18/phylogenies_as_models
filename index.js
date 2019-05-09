@@ -97,7 +97,8 @@ function getCommonTree(taxa, where){
           'left-right-spacing': 'fit-to-size',
           'top-bottom-spacing': 'fit-to-size'
         })
-        .size([500, 800]);
+        .size([700, 1000])
+        .font_size([60]);
 
       // render to this SVG element
 
