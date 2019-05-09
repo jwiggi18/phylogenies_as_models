@@ -93,6 +93,7 @@ function getCommonTree(taxa, where){
       var tree = d3.layout.phylotree()
         // create a tree layout object
         .svg(d3.select(where))
+      //.radial(true)
         .options({
           'left-right-spacing': 'fit-to-size',
           'top-bottom-spacing': 'fit-to-size'
@@ -104,16 +105,18 @@ function getCommonTree(taxa, where){
 
       var newick = resp.newick;
 
-      tree(newick.replace(/ /g,"_"))
+      tree(d3.layout.newick_parser(newick.replace(/_/g,"--->").replace(/ /g,"_")))
         // parse the Newick into a d3 hierarchy object with additional fields
         .layout();
-
-
       // layout and render the tree
       // for syntax highlighting
       hljs.initHighlightingOnLoad();
-    }
+
+    //$("#layout").on("click", function(e) {
+    //  tree.radial($(this).prop("unchecked")).placenodes().update();
+  //});
   };
+};
   xhr.send(JSON.stringify({ "list": taxa, "list_type": 'scientific' }));
 }
 
