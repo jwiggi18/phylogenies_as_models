@@ -5,32 +5,45 @@
 <head>
   <meta charset="utf-8">
 
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <link href="phylotree.css" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="phylotree.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
-  <style>
-#code {
-  display: inline-block;
-  width: 700px;
-  padding-left: 50px;
-}
-  </style>
+  <script src="index.js"></script>
+
+
 </head>
 
 <body>
+<div class = "row">
+  <header>
+  <img src = "img/logo_w_text.png" alt = "Circular Phylogeny overlaying a Brown and Green tree"/>
+  </header>
+</div>
 
-  <div>
-    <h4>Select a group of organisms</h4>
+<hr>
+
+<!-- Grid -->
+<div class="row">
+    <!-- To select -->
+    <div class="column1" style="background-color:white;">
+      <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container">
+          <h4>Select a group of organisms</h4>
 <!--
     <br />
     <select id="group" onchange="getPopular()">
@@ -58,13 +71,14 @@
       <option value="802117">Mollusks</option>
       <option value="1062253">Insects</option>
       <option value="821346">Mosses</option>
-      <option value="99252">Flowering plants</option>
     </select>
 
+<!--  <option value="99252">Flowering plants</option> -->
 
     <p id="loading"></p>
     <p id="tree"></p>
 
+<<<<<<< HEAD
     <script>
     function getPopular() {
       var xmlhttp = new XMLHttpRequest();
@@ -176,6 +190,53 @@
     <h4>Taxon Tree</h4>
     <svg id= "tree_display"
 
+=======
+      </div>
+    </div>
+
+<!-- Quiz -->
+    <div class="w3-card-4 w3-margin w3-white">
+      <div class="w3-container">
+        <h4>Check your Understanding</h4>
+      </div>
+    </div>
+  </div>
+<!-- End Quiz -->
+
+<!-- End To select -->
+
+<!-- Tree Display -->
+      <div class="column2" style="background-color:white;">
+        <div class="w3-margin w3-margin-top">
+          <div class="w3-container">
+        <h4>Taxon Tree</h4>
+<!--    <form>
+          <label>Radial layout</label>
+          <input type="checkbox" id="layout" unchecked/>
+        </form>  -->
+        <svg id= "tree_display" ></svg>
+          </div>
+        </div>
+      </div>
+<!-- End Tree Display -->
+
+    </div><br>
+<!-- End Grid -->
+
+<!-- 2nd Grid -->
+<div class="row">
+
+  <!-- Phylogeny Video -->
+    <div class="w3-card-4 w3-margin-top">
+      <div class="w3-container">
+        <h4>Learn about Phylogenetic Trees</h4>
+        <iframe class ="center-video" width="800" height="600" src="https://www.youtube.com/embed/mD94D0KAn2U?start=187" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+  <!-- End Phylogeny Video -->
+  </div>
+<!-- End 2nd Grid -->
+>>>>>>> 0819ca1cb19ccf49e26963b39f585c5689148db1
 
 </body>
 
