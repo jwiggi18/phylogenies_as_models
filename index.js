@@ -187,7 +187,7 @@ function getCommonTreeOld(taxa, where) {
 function getQuestions() {
   var group = document.getElementById("group").value
   if (group == "244265") {
-    var mammal_q = ["Pan paniscus (Bonobo) more closely related to Homo sapiens (Human) or gorilla_gorilla (Western gorilla)?", "Ursus maritimus (Polar bear) more closely related to Balaenoptera musculus (Blue whale) or Acinonyx jubatus (Cheetah)?", "Canis lupus (Gray wolf) more closely related to Puma concolor (Cougar) or Felis catus (Domestic cat)?"];
+    var mammal_q = ["Pan paniscus (Bonobo) more closely related to Homo sapiens (Human) or Gorilla gorilla (Western gorilla)?", "Ursus maritimus (Polar bear) more closely related to Balaenoptera musculus (Blue whale) or Acinonyx jubatus (Cheetah)?", "Canis lupus (Gray wolf) more closely related to Puma concolor (Cougar) or Felis catus (Domestic cat)?"];
     var mammal_a = ["Homo sapiens (Human)", "Acinonyx jubatus (Cheetah)", "Felis catus (Domestic cat)"];
 
     var random001 = Math.floor(Math.random() * mammal_q.length);
