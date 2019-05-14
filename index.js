@@ -184,8 +184,7 @@ function getCommonTreeOld(taxa, where) {
 }
 
 function getQuestions() {
-  var data = {
-    mapping:[
+  var data = [
               {"taxon": "Mammals",
                 "question_text":["Is Pan paniscus (Bonobo) more closely related to \n (A) Homo sapiens (Human) or \n (B) Gorilla gorilla (Western gorilla)?", "Is Ursus maritimus (Polar bear) more closely related to \n (A) Balaenoptera musculus (Blue whale) or \n (B) Acinonyx jubatus (Cheetah)?", "Is Canis lupus (Gray wolf) more closely related to \n (A) Puma concolor (Cougar) or \n (B) Felis catus (Domestic cat)?"],
                 "answer_text":["(A) Homo sapiens (Human)", "(B) Acinonyx jubatus (Cheetah)", "(B) Felis catus (Domestic cat)"]
@@ -197,8 +196,8 @@ function getQuestions() {
               },
 
               {"taxon": "Squamates",
-                "question_text"["sq1","sq2","sq3"],
-                "answer_text"["sa1","sa2","sa3"]
+                "question_text":["sq1","sq2","sq3"],
+                "answer_text":["sa1","sa2","sa3"]
               },
 
               {"taxon": "Echinoderms",
@@ -225,8 +224,8 @@ function getQuestions() {
                 "question_text":["mq1","mq2","mq3"],
                 "answer_text":["ma1","ma2","ma3"]
               },
-              ]}
-    var mapping =data.mapping
+            ];
+    var mapping =data[0]
 
     var random001 = Math.floor(Math.random() * question_text.length);
             }
