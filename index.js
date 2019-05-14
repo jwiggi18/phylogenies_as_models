@@ -183,24 +183,28 @@ function getCommonTreeOld(taxa, where) {
   );
 }
 
-// to responsively call quesitons
+// to responsively call fill in the blank quesitons
 function getQuestions() {
-  var group = document.getElementById("group").value
+  var group = document.getElementById("group").value;
   if (group == "244265") {
-    var mammal_q = ["Pan paniscus (Bonobo) more closely related to Homo sapiens (Human) or Gorilla gorilla (Western gorilla)?", "Ursus maritimus (Polar bear) more closely related to Balaenoptera musculus (Blue whale) or Acinonyx jubatus (Cheetah)?", "Canis lupus (Gray wolf) more closely related to Puma concolor (Cougar) or Felis catus (Domestic cat)?"];
+    var mammal_q = ["Is Pan paniscus (Bonobo) more closely related to \n Homo sapiens (Human) or \n Gorilla gorilla (Western gorilla)?", "Is Ursus maritimus (Polar bear) more closely related to \n Balaenoptera musculus (Blue whale) or \n Acinonyx jubatus (Cheetah)?", "Is Canis lupus (Gray wolf) more closely related to \n Puma concolor (Cougar) or \n Felis catus (Domestic cat)?"];
     var mammal_a = ["Homo sapiens (Human)", "Acinonyx jubatus (Cheetah)", "Felis catus (Domestic cat)"];
-
     var random001 = Math.floor(Math.random() * mammal_q.length);
 
     function submit001() {
-      var a = input001.value;
-      if (random001 == 0 && b == mammal_a[0]) {
-        document.getElementById(answer001).innerHTML = "Correct!";
-      } else {
-        document.getElementById(answer001).innerHTML = "incorrect (did you spell it correctly?)";
-      }
-    }
-
+          var a = input001.value;
+          var random001 = Math.floor(Math.random() * mammal_q.length);
+          if (random001 == 0 && b == a[0]) {
+            document.getElementById("answer001").innerHTML = "Correct!";
+          } else if (random001 == 1 && b ==a[1]){
+            document.getElementById("answer001").innerHTML = "Correct!)";
+          } else if (random001 == 2 && b ==a[2]){
+            document.getElementById("answer001").innerHTML = "Correct!)";
+          }
+          else {
+            document.getElementById("answer001").innerHTML = "incorrect)";
+          }
+        }
     document.getElementById("question01").innerHTML = mammal_q[random001]
   }
 }
