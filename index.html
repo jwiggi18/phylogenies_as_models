@@ -61,7 +61,7 @@
 <!-- <option value="arachnida">Arachnids</option> -->
 
 
-<select id="group" onchange="getOZPopular(); getQuestions()">
+<select id="group" onchange="getOZPopular(); generateQuiz()">
       <option value="select">Select</option>
       <option value="244265">Mammals</option>
       <option value="544595">Amphibians</option>
@@ -85,10 +85,10 @@
     <div class="w3-card-4 w3-margin w3-white">
       <div class="w3-container">
         <h2>Questions Coming Soon!</h2>
-    <!--Code below for fill in the blank quesitons-->
-      <p id="message001"> <text id="question01"></text></p>
-        <input type="text" id="input001" /><button onclick="submit001()">Submit</input>
-        <p id="answer001"></p>
+
+        <div id="quiz"></div>
+        <button id="submit">Get Results</button>
+        <div id="results"></div>
 
       </div>
     </div>

@@ -183,49 +183,172 @@ function getCommonTreeOld(taxa, where) {
   );
 }
 
+var data = [
+            {"taxon": "Mammals",
+              "question_text":["Is Pan paniscus (Bonobo) more closely related to \n (A) Homo sapiens (Human) or \n (B) Gorilla gorilla (Western gorilla)?", "Is Ursus maritimus (Polar bear) more closely related to \n (A) Balaenoptera musculus (Blue whale) or \n (B) Acinonyx jubatus (Cheetah)?", "Is Canis lupus (Gray wolf) more closely related to \n (A) Puma concolor (Cougar) or \n (B) Felis catus (Domestic cat)?"],
+              "answer_text":["(A) Homo sapiens (Human)", "(B) Acinonyx jubatus (Cheetah)", "(B) Felis catus (Domestic cat)"],
+              "answer": ["A", "B", "B"]
+            },
+
+            {"taxon": "Amphibians",
+              "question_text":["aq1","aq2","aq3"],
+              "answer_text":["aa1","aa2","aa3"]
+            },
+
+            {"taxon": "Squamates",
+              "question_text":["sq1","sq2","sq3"],
+              "answer_text":["sa1","sa2","sa3"]
+            },
+
+            {"taxon": "Echinoderms",
+              "question_text":["eq1","eq2","eq3"],
+              "answer_text":["ea1","ea2","ea3"]
+            },
+
+            {"taxon": "Birds",
+              "question_text":["bq1","bq2","bq3"],
+              "answer_text":["ba1","ba2","ba3"]
+            },
+
+            {"taxon": "Mollusks",
+              "question_text":["bq1","bq2","bq3"],
+              "answer_text":["ba1","ba2","ba3"]
+            },
+
+            {"taxon": "Insects",
+              "question_text":["iq1","iq2","iq3"],
+              "answer_text":["ia1","ia2","ia3"]
+            },
+
+            {"taxon": "Mosses",
+              "question_text":["mq1","mq2","mq3"],
+              "answer_text":["ma1","ma2","ma3"]
+            },
+          ]
+
+
+
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+  var questions = [
+      {
+        question:"Pan paniscus (Bonobo) is more closely related to",
+        answers: {
+                  a: 'Homo sapiens (Human)',
+                  b: 'Gorilla gorilla (Western gorilla)'
+              },
+              correctAnswer: 'a'
+      },
+      {
+        question: "Ursus maritimus (Polar bear) is more closely related to",
+        answers: {
+                 a: 'Balaenoptera musculus (Blue whale)',
+                 b: 'Acinonyx jubatus (Cheetah)'
+               },
+               correctAnswer: 'b'
+      },
+      {
+        question: 'Canis lupus (Gray wolf) is more closely related to',
+        answers: {
+                  a: 'Puma concolor (Cougar)',
+                  b: 'Felis catus (Domestic cat)'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+
+    var quizContainer = document.getElementById('quiz');
+    var resultsContainer = document.getElementById('results');
+    var submitButton = document.getElementById('submit');
+
+    function showQuestions(questions, quizContainer){
+    	// we'll need a place to store the output and the answer choices
+    	var output = [];
+    	var answers;
+
+    	// for each question...
+    	for(var i=0; i<questions.length; i++){
+
+    		// first reset the list of answers
+    		answers = [];
+
+    		// for each available answer to this question...
+    		for(letter in questions[i].answers){
+
+    			// ...add an html radio button
+    			answers.push(
+    				'<label>'
+    					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+    					+ letter + ': '
+    					+ questions[i].answers[letter]
+    				+ '</label>'
+    			);
+    		}
+
+    		// add this question and its answers to the output
+    		output.push(
+    			'<div class="question">' + questions[i].question + '</div>'
+    			+ '<div class="answers">' + answers.join('') + '</div>'
+    		);
+    	}
+
+    	// finally combine our output list into one string of html and put it on the page
+    	quizContainer.innerHTML = output.join('');
+    }
+    // end showQuestions function
+
+    showQuestions(questions, quizContainer);
+
+    function showResults(questions, quizContainer, resultsContainer){
+
+    	// gather answer containers from our quiz
+    	var answerContainers = quizContainer.querySelectorAll('.answers');
+
+    	// keep track of user's answers
+    	var userAnswer = '';
+    	var numCorrect = 0;
+
+    	// for each question...
+    	for(var i=0; i<questions.length; i++){
+
+    		// find selected answer
+    		userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+
+    		// if answer is correct
+    		if(userAnswer===questions[i].correctAnswer){
+    			// add to the number of correct answers
+    			numCorrect++;
+
+    			// color the answers green
+    			answerContainers[i].style.color = 'lightgreen';
+    		}
+    		// if answer is wrong or blank
+    		else{
+    			// color the answers red
+    			answerContainers[i].style.color = 'red';
+    		}
+    	}
+
+    	// show number of correct answers out of total
+    	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+    }
+    // end showResults function
+
+    // show the questions
+    showQuestions(questions, quizContainer);
+
+    //on submit, show results
+    submitButton.onclick = function() {
+      showResults(questions, quizContainer, resultsContainer);
+    }
+
+
+}
+
+
+
+
+
 function getQuestions() {
-  var data = [
-              {"taxon": "Mammals",
-                "question_text":["Is Pan paniscus (Bonobo) more closely related to \n (A) Homo sapiens (Human) or \n (B) Gorilla gorilla (Western gorilla)?", "Is Ursus maritimus (Polar bear) more closely related to \n (A) Balaenoptera musculus (Blue whale) or \n (B) Acinonyx jubatus (Cheetah)?", "Is Canis lupus (Gray wolf) more closely related to \n (A) Puma concolor (Cougar) or \n (B) Felis catus (Domestic cat)?"],
-                "answer_text":["(A) Homo sapiens (Human)", "(B) Acinonyx jubatus (Cheetah)", "(B) Felis catus (Domestic cat)"]
-              },
-
-              {"taxon": "Amphibians",
-                "question_text":["aq1","aq2","aq3"],
-                "answer_text":["aa1","aa2","aa3"]
-              },
-
-              {"taxon": "Squamates",
-                "question_text":["sq1","sq2","sq3"],
-                "answer_text":["sa1","sa2","sa3"]
-              },
-
-              {"taxon": "Echinoderms",
-                "question_text":["eq1","eq2","eq3"],
-                "answer_text":["ea1","ea2","ea3"]
-              },
-
-              {"taxon": "Birds",
-                "question_text":["bq1","bq2","bq3"],
-                "answer_text":["ba1","ba2","ba3"]
-              },
-
-              {"taxon": "Mollusks",
-                "question_text":["bq1","bq2","bq3"],
-                "answer_text":["ba1","ba2","ba3"]
-              },
-
-              {"taxon": "Insects",
-                "question_text":["iq1","iq2","iq3"],
-                "answer_text":["ia1","ia2","ia3"]
-              },
-
-              {"taxon": "Mosses",
-                "question_text":["mq1","mq2","mq3"],
-                "answer_text":["ma1","ma2","ma3"]
-              },
-            ];
-
     var group = document.getElementById("group").value;
     if (group == "244265") {
       var random0 = Math.floor(Math.random() * data[0].question_text.length);
@@ -263,18 +386,15 @@ function getQuestions() {
   }
 }
 
-    /*var a = input001.value;
+
+
+
+    /*
 
     if (random001 == 0 && b == a[0]) {
     document.getElementById("answer001").innerHTML = "Correct!";
 
         } else if (random001 == 1 && b ==a[1]){
-    var q = (data[0]).question_text;
-    var i = 0;
-    var popular_species = [];
-    for (i=0; i<res.length; i++){
-        popular_species.push((res[i]).name);
-    var mapping =data[0]
 
 );
             }
