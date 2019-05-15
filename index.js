@@ -183,51 +183,7 @@ function getCommonTreeOld(taxa, where) {
   );
 }
 
-var data = [
-            {"taxon": "Mammals",
-              "question_text":["Is Pan paniscus (Bonobo) more closely related to \n (A) Homo sapiens (Human) or \n (B) Gorilla gorilla (Western gorilla)?", "Is Ursus maritimus (Polar bear) more closely related to \n (A) Balaenoptera musculus (Blue whale) or \n (B) Acinonyx jubatus (Cheetah)?", "Is Canis lupus (Gray wolf) more closely related to \n (A) Puma concolor (Cougar) or \n (B) Felis catus (Domestic cat)?"],
-              "answer_text":["(A) Homo sapiens (Human)", "(B) Acinonyx jubatus (Cheetah)", "(B) Felis catus (Domestic cat)"],
-              "answer": ["A", "B", "B"]
-            },
-
-            {"taxon": "Amphibians",
-              "question_text":["aq1","aq2","aq3"],
-              "answer_text":["aa1","aa2","aa3"]
-            },
-
-            {"taxon": "Squamates",
-              "question_text":["sq1","sq2","sq3"],
-              "answer_text":["sa1","sa2","sa3"]
-            },
-
-            {"taxon": "Echinoderms",
-              "question_text":["eq1","eq2","eq3"],
-              "answer_text":["ea1","ea2","ea3"]
-            },
-
-            {"taxon": "Birds",
-              "question_text":["bq1","bq2","bq3"],
-              "answer_text":["ba1","ba2","ba3"]
-            },
-
-            {"taxon": "Mollusks",
-              "question_text":["bq1","bq2","bq3"],
-              "answer_text":["ba1","ba2","ba3"]
-            },
-
-            {"taxon": "Insects",
-              "question_text":["iq1","iq2","iq3"],
-              "answer_text":["ia1","ia2","ia3"]
-            },
-
-            {"taxon": "Mosses",
-              "question_text":["mq1","mq2","mq3"],
-              "answer_text":["ma1","ma2","ma3"]
-            },
-          ]
-
-
-
+// code for generateQuiz from: https://simplestepscode.com/javascript-quiz-tutorial/
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
     var quizContainer = document.getElementById('quiz');
@@ -367,7 +323,7 @@ function taxonQuiz () {
       {
         question: 'Is it possible to tell from this tree if Hymenochirus boettgeri (Zaire dwarf clawed frog) is more closely related to Hymenochirus curtipes (Western dwarf clawed frog) or Hymenochirus boulengeri (Eastern dwarf clawed frog)',
         answers: {
-                  a: 'yes                   ',
+                  a: 'yes',
                   b: 'no'
                 },
                 correctAnswer: 'b'
