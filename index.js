@@ -225,9 +225,58 @@ function getQuestions() {
                 "answer_text":["ma1","ma2","ma3"]
               },
             ];
+
+    var group = document.getElementById("group").value;
+    if (group == "244265") {
+      var random0 = Math.floor(Math.random() * data[0].question_text.length);
+      document.getElementById("question01").innerHTML = data[0].question_text[random0];
+      }
+    else if (group =="544595"){
+      var random1 = Math.floor(Math.random() * data[1].question_text.length);
+      document.getElementById("question01").innerHTML = data[1].question_text[random1];
+    }
+    else if (group =="35888"){
+      var random2 = Math.floor(Math.random() * data[2].question_text.length);
+      document.getElementById("question01").innerHTML = data[2].question_text[random2];
+    }
+    else if (group =="451020"){
+      var random3 = Math.floor(Math.random() * data[3].question_text.length);
+      document.getElementById("question01").innerHTML = data[3].question_text[random3];
+    }
+    else if (group =="81461"){
+      var random4 = Math.floor(Math.random() * data[4].question_text.length);
+      document.getElementById("question01").innerHTML = data[4].question_text[random4];
+    }
+    else if (group =="802117"){
+      var random5 = Math.floor(Math.random() * data[5].question_text.length);
+      document.getElementById("question01").innerHTML = data[5].question_text[random5];
+    }
+    else if (group =="1062253"){
+      var random6 = Math.floor(Math.random() * data[6].question_text.length);
+      document.getElementById("question01").innerHTML = data[6].question_text[random6];
+    }
+    else if (group =="821346"){
+      var random7 = Math.floor(Math.random() * data[7].question_text.length);
+      document.getElementById("question01").innerHTML = data[7].question_text[random7];
+    }
+    else {document.getElementById("question01").innerHTML = "oops, something went wrong";
+  }
+}
+
+    /*var a = input001.value;
+
+    if (random001 == 0 && b == a[0]) {
+    document.getElementById("answer001").innerHTML = "Correct!";
+
+        } else if (random001 == 1 && b ==a[1]){
+    var q = (data[0]).question_text;
+    var i = 0;
+    var popular_species = [];
+    for (i=0; i<res.length; i++){
+        popular_species.push((res[i]).name);
     var mapping =data[0]
 
-    var random001 = Math.floor(Math.random() * question_text.length);
+);
             }
 
 
@@ -255,3 +304,4 @@ function getQuestionsOld() {
     document.getElementById("question01").innerHTML = mammal_q[random001]
   }
 }
+*/
