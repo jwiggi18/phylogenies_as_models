@@ -61,7 +61,7 @@
 <!-- <option value="arachnida">Arachnids</option> -->
 
 
-<select id="group" onchange="getOZPopular(); generateQuiz()">
+<select id="group" onchange="getOZPopular(); taxonQuiz()">
       <option value="select">Select</option>
       <option value="244265">Mammals</option>
       <option value="544595">Amphibians</option>
@@ -84,8 +84,8 @@
 <!-- Quiz -->
     <div class="w3-card-4 w3-margin w3-white">
       <div class="w3-container">
-        <h2>Questions Coming Soon!</h2>
-
+        <h2>Questions</h2>
+        <p id="error"></p>
         <div id="quiz"></div>
         <button id="submit">Get Results</button>
         <div id="results"></div>

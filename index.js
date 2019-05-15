@@ -229,32 +229,6 @@ var data = [
 
 
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
-  var questions = [
-      {
-        question:"Pan paniscus (Bonobo) is more closely related to",
-        answers: {
-                  a: 'Homo sapiens (Human)',
-                  b: 'Gorilla gorilla (Western gorilla)'
-              },
-              correctAnswer: 'a'
-      },
-      {
-        question: "Ursus maritimus (Polar bear) is more closely related to",
-        answers: {
-                 a: 'Balaenoptera musculus (Blue whale)',
-                 b: 'Acinonyx jubatus (Cheetah)'
-               },
-               correctAnswer: 'b'
-      },
-      {
-        question: 'Canis lupus (Gray wolf) is more closely related to',
-        answers: {
-                  a: 'Puma concolor (Cougar)',
-                  b: 'Felis catus (Domestic cat)'
-                },
-                correctAnswer: 'b'
-      }
-  ];
 
     var quizContainer = document.getElementById('quiz');
     var resultsContainer = document.getElementById('results');
@@ -345,10 +319,232 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 }
 
 
+function taxonQuiz () {
+  var group = document.getElementById("group").value;
+  var mammals = [
+      {
+        question:"Pan paniscus (Bonobo) is more closely related to",
+        answers: {
+                  a: 'Homo sapiens (Human)',
+                  b: 'Gorilla gorilla (Western gorilla)'
+              },
+              correctAnswer: 'a'
+      },
+      {
+        question: "Ursus maritimus (Polar bear) is more closely related to",
+        answers: {
+                 a: 'Balaenoptera musculus (Blue whale)',
+                 b: 'Acinonyx jubatus (Cheetah)'
+               },
+               correctAnswer: 'b'
+      },
+      {
+        question: 'Canis lupus (Gray wolf) is more closely related to',
+        answers: {
+                  a: 'Puma concolor (Cougar)',
+                  b: 'Felis catus (Domestic cat)'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+  var amphibians = [
+      {
+        question:"Alytes cisternasii is more closely related to",
+        answers: {
+                  a: 'Latonia nigriventer',
+                  b: 'Barbourula busuangensis'
+              },
+              correctAnswer: 'a'
+      },
+      {
+        question: "Ascaphus montanus (Rock mountain tailed frog) is more closely related to",
+        answers: {
+                 a: 'Leiopelma hochstetteri (Hochstetters frog)',
+                 b: 'Alytes cisternasii'
+               },
+               correctAnswer: 'a'
+      },
+      {
+        question: 'Is it possible to tell from this tree if Hymenochirus boettgeri (Zaire dwarf clawed frog) is more closely related to Hymenochirus curtipes (Western dwarf clawed frog) or Hymenochirus boulengeri (Eastern dwarf clawed frog)',
+        answers: {
+                  a: 'yes                   ',
+                  b: 'no'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+  var squamates = [
+      {
+        question:"Bradypodion pumilum (Cape dwarf chameleon) is more closely related to",
+        answers: {
+                  a: 'Bradypodion damaranum (Knysna dwarf chameleon)',
+                  b: 'Bradypodion ngomeense (Ngome dwarf chameleon)'
+              },
+              correctAnswer: 'a'
+      },
+      {
+        question: "Is it possible to tell from this tree if Palleon nasus (Elongate leave chameleon) is more closely related to Brookesia lambertoni (Fito leave chameleon) or Palleon lolontany",
+        answers: {
+                 a: 'yes',
+                 b: 'no'
+               },
+               correctAnswer: 'a'
+      },
+      {
+        question: 'Archaius tigris is more closely related to',
+        answers: {
+                  a: 'Varanus komodoensis (Komodo dragon)',
+                  b: 'Brookesia ramanantsoai'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+  var echinoderms = [
+      {
+        question:"Is it possible to tell from this tree if Pythonaster atlantidis is more closely related to Pythonaster murrayi or Pythonaster pacificus?",
+        answers: {
+                  a: 'yes',
+                  b: 'no'
+              },
+              correctAnswer: 'b'
+      },
+      {
+        question: "Acanthaster planci (Crown of thorns) is more closely related to",
+        answers: {
+                 a: 'Sclerasterias mollis',
+                 b: 'Myxaster perrieri'
+               },
+               correctAnswer: 'a'
+      },
+      {
+        question: 'Sclerasterias mollis is more closely related to',
+        answers: {
+                  a: 'Orthasterias koehleri (Orthasterias)',
+                  b: 'Sclerasterias mazophora'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+  var birds = [
+      {
+        question:"Struthio camelus (Ostrich) is more closely related to",
+        answers: {
+                  a: 'Tyto sororcula (moluccan masked owl)',
+                  b: 'Eutoxeres aquila (White tipped sicklebill)'
+              },
+              correctAnswer: 'b'
+      },
+      {
+        question: "Ninox theomacha (Jungle boobook) is more closely related to",
+        answers: {
+                 a: 'Xenoglaux loweryi (Long-whiskered owlet)',
+                 b: 'Strigops habroptilus'
+               },
+               correctAnswer: 'a'
+      },
+      {
+        question: 'Nestor meridionalis (New Zealand kaka) is more closely related to',
+        answers: {
+                  a: 'Nymphicus hollandicus (Cockatiel)',
+                  b: 'Strigops habroptilus'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+  var mollusks = [
+      {
+        question:"Hapalochlaena fasciata (Blue-lined octopus) is more closely related to",
+        answers: {
+                  a: 'Hapalochlaena maculosa (Blue-lined octopus)',
+                  b: 'Octopus tetricus (Gloomy octopus)'
+              },
+              correctAnswer: 'a'
+      },
+      {
+        question: "Argonauta nodosa (Knobby argonaut) is more closely related to",
+        answers: {
+                 a: 'Octopus briareus (Caribbean reef octopus)',
+                 b: 'Argonauta nouryi (Nourys argonaut)'
+               },
+               correctAnswer: 'b'
+      },
+      {
+        question: 'Octopus vulgaris (Common octopus) is more closely related to',
+        answers: {
+                  a: 'Enteroctopus dofleini (Giant pacific octopus)',
+                  b: 'Octopus bimaculoides (California two-spot octopus)'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+
+  var insects = [
+      {
+        question:"Can you tell if Anopheles grassei is more closely related to Anopheles shannoni or Anopheles reidi?",
+        answers: {
+                  a: 'yes',
+                  b: 'no'
+              },
+              correctAnswer: 'b'
+      },
+      {
+        question: "Myrmecia pilosula (Jack jumper ant) is more closely related to",
+        answers: {
+                 a: 'Anopheles concolor',
+                 b: 'Solenopsis invicta (Red imported fire ant)'
+               },
+               correctAnswer: 'b'
+      },
+      {
+        question: 'Aedes aegypti (Yellowfever mosquito) is more closely related to',
+        answers: {
+                  a: 'Anopheles franciscanus',
+                  b: 'Myrmecia pilosula (Jack jumper ant)'
+                },
+                correctAnswer: 'a'
+      }
+  ];
+
+  var mosses = [
+      {
+        question:"Triquetrella tristicha is more closely related to",
+        answers: {
+                  a: 'Syntrichia papillosa',
+                  b: 'Triquetrella mxinwana'
+              },
+              correctAnswer: 'b'
+      },
+      {
+        question: "Can you tell if Tortella densa is more closely related to Tortella nitida or Tortella humilis (Small twisted moss)?",
+        answers: {
+                 a: 'no',
+                 b: 'yes'
+               },
+               correctAnswer: 'a'
+      },
+      {
+        question: 'Can you tell if Tortella densa is more closely related to Tortella nitida or Uleobryum naganoi?',
+        answers: {
+                  a: 'no',
+                  b: 'yes'
+                },
+                correctAnswer: 'b'
+      }
+  ];
+
+  if (group == "244265") {generateQuiz(questions=mammals)}
+  else if (group =="544595"){generateQuiz(questions=amphibians)}
+  else if (group =="35888"){generateQuiz(questions=squamates)}
+  else if (group =="451020"){generateQuiz(questions=echinoderms)}
+  else if (group =="81461"){generateQuiz(questions=birds)}
+  else if (group =="802117"){generateQuiz(questions=mollusks)}
+  else if (group =="1062253"){generateQuiz(questions=insects)}
+  else if (group =="821346"){generateQuiz(questions=mosses)}
+  else {document.getElementById("error").innerHTML = "oops, something went wrong";}
+}
 
 
-
-function getQuestions() {
+function getQuestionsOld() {
     var group = document.getElementById("group").value;
     if (group == "244265") {
       var random0 = Math.floor(Math.random() * data[0].question_text.length);
