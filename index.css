@@ -87,7 +87,7 @@ p {
 /*links styling*/
 /* unvisited link */
 a:link {
-  color: red;
+  text-decoration: underline;
 }
 
 a:visited {
@@ -96,5 +96,6 @@ a:visited {
 
 a:hover {
   text-decoration: underline;
+  background-color: #E0FAFE;
 }
 /*links styling end*/
