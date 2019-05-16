@@ -295,9 +295,9 @@ function taxonQuiz () {
                correctAnswer: 'b'
       },
       {
-        question: 'Canis lupus (Gray wolf) is more closely related to',
+        question: 'Canis lupus (Gray wolf) shares a more recent common ancestor with',
         answers: {
-                  a: 'Puma concolor (Cougar)',
+                  a: 'Orcinus orca (Grampus)',
                   b: 'Felis catus (Domestic cat)'
                 },
                 correctAnswer: 'b'
