@@ -313,7 +313,7 @@ function taxonQuiz () {
               correctAnswer: 'a'
       },
       {
-        question: "Ascaphus montanus (Rock mountain tailed frog) is more closely related to",
+        question: "Ascaphus montanus (Rocky mountain tailed frog) is more closely related to",
         answers: {
                  a: 'Leiopelma hochstetteri (Hochstetters frog)',
                  b: 'Alytes cisternasii'
@@ -373,7 +373,7 @@ function taxonQuiz () {
                correctAnswer: 'a'
       },
       {
-        question: 'Sclerasterias mollis is more closely related to',
+        question: 'Sclerasterias mollis shares a more recent common ancestor with',
         answers: {
                   a: 'Orthasterias koehleri (Orthasterias)',
                   b: 'Sclerasterias mazophora'
@@ -383,12 +383,12 @@ function taxonQuiz () {
   ];
   var birds = [
       {
-        question:"Struthio camelus (Ostrich) is more closely related to",
+        question:"Struthio camelus (Ostrich) shares a more recent common ancestor with",
         answers: {
-                  a: 'Tyto sororcula (moluccan masked owl)',
+                  a: 'Dromaius novaehollandiae (Emu)',
                   b: 'Eutoxeres aquila (White tipped sicklebill)'
               },
-              correctAnswer: 'b'
+              correctAnswer: 'a'
       },
       {
         question: "Ninox theomacha (Jungle boobook) is more closely related to",
@@ -399,7 +399,7 @@ function taxonQuiz () {
                correctAnswer: 'a'
       },
       {
-        question: 'Nestor meridionalis (New Zealand kaka) is more closely related to',
+        question: 'Nestor meridionalis (New Zealand kaka) shares a more recent common ancestor with',
         answers: {
                   a: 'Nymphicus hollandicus (Cockatiel)',
                   b: 'Strigops habroptilus'
@@ -411,7 +411,7 @@ function taxonQuiz () {
       {
         question:"Hapalochlaena fasciata (Blue-lined octopus) is more closely related to",
         answers: {
-                  a: 'Hapalochlaena maculosa (Blue-lined octopus)',
+                  a: 'Hapalochlaena maculosa (Lesser blue-ringed octopus)',
                   b: 'Octopus tetricus (Gloomy octopus)'
               },
               correctAnswer: 'a'
@@ -425,7 +425,7 @@ function taxonQuiz () {
                correctAnswer: 'b'
       },
       {
-        question: 'Octopus vulgaris (Common octopus) is more closely related to',
+        question: 'Octopus vulgaris (Common octopus) shares a more recent common ancestor with',
         answers: {
                   a: 'Enteroctopus dofleini (Giant pacific octopus)',
                   b: 'Octopus bimaculoides (California two-spot octopus)'
