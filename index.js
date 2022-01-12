@@ -43,7 +43,7 @@ function getOZPopular() {
     }
   }
   //group value must be ottids not names to use this fn
-  xmlhttpOZ.open("GET", "https://onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=" + document.getElementById("group").value, true);
+  xmlhttpOZ.open("GET", "https://beta.onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=" + document.getElementById("group").value, true);
   xmlhttpOZ.send();
 }
 
