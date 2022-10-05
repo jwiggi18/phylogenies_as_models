@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+</head>
+
+<body>
+<h2> trying to call function for test</h2>
+<div id="species"></div>
+<script>
+    fetch("https://beta.onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=244265").then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
+        .then(data => {
+            console.log(data);
+            dispaySpecies(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+</script
+</body>

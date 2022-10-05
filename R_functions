@@ -1,0 +1,41 @@
+#access and pull data from the onezoom API
+#packages required: httr, jsonlite, ape
+library(httr)
+library(jsonlite)
+library(ape)
+library(datelife)
+BiocManager::install("msa", dependencies = TRUE)
+get_list <- function(id){
+    res = GET(paste0("https://beta.onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=",id))
+    rawToChar(res$content)
+    all = jsonlite::fromJSON(rawToChar(res$content))
+    data = all$data
+    species_list = paste(shQuote((data[,4]), type = "cmd"), collapse = ", ")
+    return(species_list)
+}
+
+#get newick from ape
+# id = the onezoom ottid
+# name = the taxon group name (e.g. mammals)
+#get phy object from datelife then newick from ape
+# "244265" Mammals
+get_newick <- function(id, name){
+    list = get_list(id)
+    #to get phy object
+    full = datelife::datelife_search(list)
+    phyObj = full$phy
+    #write newick
+    ape::write.tree(phyObj, file = paste0("newicks/", name, ".csv"))
+}
+
+l = get_list("244265")
+head(l)
+a = datelife::datelife_search(l)
+names(a)
+head(a$phy)
+head(a$cleaned_names)
+head(a$ott_ids)
+
+typeof(phyO)
+
+ape::write.tree(phyO, file = "newicks/mammals.csv")

@@ -1,4 +1,20 @@
+// phylotastic is no longer functional so datelife is now used to get trees. Datelife does not have an api so species names were retrieved from onezoom manually at https://beta.onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=
+//      "244265" Mammals
+//      "544595" Amphibians
+//      "35888" Squamates
+//      "451020" Echinoderms
+//      "81461" Birds
+//     "802117" Mollusks
+//      "1062253" Insects
+//      "821346" Mosses
 
+// results are filtered for species names and then the newick string is retrieved usind the datelife R package
+
+// the newick string is used in phylotree.js to render the tree
+
+
+
+// getPopular is not in use
 function getPopular() {
   var xmlhttp = new XMLHttpRequest();
   var taxa = "";
@@ -21,6 +37,7 @@ function getPopular() {
   xmlhttp.send();
 }
 
+// getOZPopular is not in use
 // getOZPopular - pulls directly from the OneZoom API this allows for the use of ottids and the use of ranked popularity rather than raw
 function getOZPopular() {
   var xmlhttpOZ = new XMLHttpRequest();
@@ -36,7 +53,7 @@ function getOZPopular() {
       }
       var taxa = encodeURI(popular_species);
       taxa = taxa.replace(/,/g,"|" );
-      getCommonTree(taxa, "#tree_display");
+      //getCommonTree(taxa, "#tree_display");
     //  getTree(taxa, "#tree_display");
     //invoke_service(taxa, "#tree_display");
 
@@ -47,7 +64,7 @@ function getOZPopular() {
   xmlhttpOZ.send();
 }
 
-
+// getTree is not in use
 function getTree(taxa, where) {
   document.getElementById("loading").innerHTML = "Now fetching tree";
   var xmlhttpTree = new XMLHttpRequest();
