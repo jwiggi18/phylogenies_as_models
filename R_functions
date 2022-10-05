@@ -9,33 +9,24 @@ get_list <- function(id){
     res = GET(paste0("https://beta.onezoom.org/popularity/list?expand_taxa=1&key=buUIlWiZxQ&max=20&names=1&sort=rank&otts=",id))
     rawToChar(res$content)
     all = jsonlite::fromJSON(rawToChar(res$content))
+    #four columns of data: ott_id, Inot sure what [,2] is, rank, name
     data = all$data
-    species_list = paste(shQuote((data[,4]), type = "cmd"), collapse = ", ")
+    # get the names of the taxa (fourth column)
+    species_list <- data[,4]
     return(species_list)
-}
+}   
 
-#get newick from ape
+
 # id = the onezoom ottid
 # name = the taxon group name (e.g. mammals)
 #get phy object from datelife then newick from ape
 # "244265" Mammals
 get_newick <- function(id, name){
     list = get_list(id)
-    #to get phy object
-    full = datelife::datelife_search(list)
-    phyObj = full$phy
-    #write newick
-    ape::write.tree(phyObj, file = paste0("newicks/", name, ".csv"))
+    #not retuning a newick..
+    newick = datelife::datelife_search(list, summary_format = "newick_median")
+    return(newick)
 }
 
-l = get_list("244265")
-head(l)
-a = datelife::datelife_search(l)
-names(a)
-head(a$phy)
-head(a$cleaned_names)
-head(a$ott_ids)
-
-typeof(phyO)
-
-ape::write.tree(phyO, file = "newicks/mammals.csv")
+mam_newick = get_newick("244265", "mammals")
+mam_newick
